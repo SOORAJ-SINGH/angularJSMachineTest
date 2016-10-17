@@ -1,5 +1,6 @@
+(function(){
 app.config(['$routeProvider', function ($routeProvider) {
-    console.log('configuring the routeProvider');
+    console.log('in app.config for  the routeProvider');
     $routeProvider
 		.when('/', { templateUrl: "app/components/users/users.html", controller: "userController" })
 		.when('/users', { templateUrl: "app/components/users/users.html", controller: "userController" })
@@ -9,3 +10,5 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 
 }]);
+
+})(); //end Self Invoked Function
