@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="machineTest">
+<head>
+    <link href="assests/css/bootstrap.css" rel="stylesheet" />
+    <!--<script src="assests/libs/bootstrap.js"></script>-->
+
+    <!--<script src="assests/libs/angular.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.js"></script>-->
+    <script src="assests/libs/angular1.50/angular.js"></script>
+    <script src="assests/libs/angular-route.js"></script>
+    <script src="assests/libs/ui-bootstrap-tpls-2.1.4.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/components/users/userController.js"></script>
+    <script src="app/components/posts/postController.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/services/userService.js"></script>
+    <script src="assests/libs/jquery-3.1.1.min.js"></script>
+
+    <script src="../../../assests/libs/toastr.js"></script>
+    <link href="assests/css/ng-table.min.css" rel="stylesheet" />
+    <script src="assests/libs/ng-table.js"></script>
+    <!--<link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+    <script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>-->
+    <style>
+        h2.heading {
+                background-color: beige;
+    padding: 6px 0px 6px 7px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <!--<h2>Machine Test</h2>-->
+        <menu></menu>
+        <div>
+            <div ng-view></div>
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+
+<h2  class="heading">Users</h2>
+<!--Status {{ status }}-->
+
+<span ng-show="!users">
+    <img src="../../../assests/img/loading.gif" width="80px" height="80px" />
+</span>
+<table ng-show="users" ng-table="customConfigParams" class="table" show-filter="true">
+    <tr ng-repeat="user in $data">
+        <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+            {{user.name}}
+        </td>
+        <td title="'City'"  sortable="'address.city'">
+            {{user.address.city}}
+        </td>
+        <td title="'Company'"  sortable="'company.name'">
+            {{user.company.name }}
+        </td>
+        <td title="'Phone'"  >
+            {{user.phone }}
+        </td>
+        <td title="'Email'" sortable="'email'">
+            {{user.email}} <br /> <a href="http://www.{{ user.website }}">{{ user.website }}</a>
+        </td>
+
+        <td title="'Action'" >
+            <a href="#posts?id={{ user.id}}">View Posts</a>
+        </td>
+    </tr>
+</table>
+
+
+
+<!--<div>
+    <div class="row">
+        <div class="col-md-2"><strong>User Name</strong></div>
+        <div class="col-md-2"><strong> City </strong></div>
+        <div class="col-md-2"><strong> Company</strong></div>
+        <div class="col-md-1"><strong> Phone </strong></div>
+        <div class="col-md-2"><strong> Email </strong></div>
+        <div class="col-md-1"><strong> Action</strong></div>
+    </div>
+    <div class="row " width="100%" ng-repeat="user in users">
+
+        <div class="col-md-2">{{ user.name }}</div>
+        <div class="col-md-2">{{ user.address.city }}</div>
+        <div class="col-md-2">{{ user.company.name }}</div>
+        <div class="col-md-1">{{ user.phone }}</div>
+        <div class="col-md-2">{{ user.email }} <a href="http://www.{{ user.website }}">{{ user.website }}</a></div>
+        <div class="col-md-1"><a href="#posts?id={{ user.id}}">View Posts</a></div>
+    </div>
+    
+</div>-->
+
+
