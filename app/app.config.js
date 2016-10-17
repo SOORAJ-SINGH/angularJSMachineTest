@@ -1,6 +1,9 @@
 (function(){
 app.config(['$routeProvider', function ($routeProvider) {
-    console.log('in app.config for  the routeProvider');
+    console.log('in app.config ');
+
+    
+
     $routeProvider
 		.when('/', { templateUrl: "app/components/users/users.html", controller: "userController" })
 		.when('/users', { templateUrl: "app/components/users/users.html", controller: "userController" })

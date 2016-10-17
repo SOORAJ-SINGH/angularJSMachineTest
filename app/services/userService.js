@@ -1,18 +1,14 @@
 ﻿(function () {
 
-    //userFactory to get users data using the API call
-    app.service('userService', ['$http', function ($http) {
+    //userService to get users data using the API call
+    app.service('userService', ['$http', 'userURL', function ($http, userURL) {
         console.log('in userService');
 
         this.getUsers = function () {
 
             return $http({
                 method: 'GET',
-                url: 'http://jsonplaceholder.typicode.com/users',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8,'
-                },
-                crossDomain: true,
+                url: userURL,
                 dataType: 'jsonp'
             }).then(function successCallback(response) {
                 console.log('in Success', response);
@@ -26,7 +22,7 @@
     }]);
 
     //userFactory to get users data using the API call
-    app.factory('userFactory', ['$http', function ($http) {
+    app.factory('userFactory', ['$http', 'userURL', function ($http, userURL) {
         console.log('in userFactory');
         var user = {};
 
@@ -34,11 +30,7 @@
 
             return $http({
                 method: 'GET',
-                url: 'http://jsonplaceholder.typicode.com/users',
-                headers: {
-                    'Content-Type': 'application/json; charset=utf-8,'
-                },
-                crossDomain: true,
+                url: userURL,
                 dataType: 'jsonp'
             }).then(function successCallback(response) {
                 console.log('in Success', response);
@@ -64,7 +56,7 @@
 
             return $http({
                 method: 'GET',
-                url: 'http://jsonplaceholder.typicode.com/posts',
+                url: postURL,
                 headers: {
                     'Content-Type': 'application/jsonp; charset=utf-8'
                 }
@@ -83,7 +75,7 @@
             console.log('in PostFactory postData', postData);
             return $http({
                 method: 'POST',
-                url: 'http://jsonplaceholder.typicode.com/posts',
+                url: postURL,
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
                     'Access-Control-Allow-Origin': '*'
