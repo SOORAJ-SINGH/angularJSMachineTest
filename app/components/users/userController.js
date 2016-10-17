@@ -1,9 +1,14 @@
 (function () {
-    var userController = function ($scope, userService, NgTableParams) {
+    //registering the userController to the module
+    app.controller('userController', [ 'userService', 'NgTableParams', userController]);
+
+    var userController = function ( userService, NgTableParams) {
         console.log('in userController');
-        $scope.hello = "hello all";
-        $scope.users;
-        $scope.status;
+        var userCtrl = this;
+
+        userCtrl.hello = "hello all";
+        userCtrl.users;
+        userCtrl.status;
 
         getUsers();
 
@@ -11,18 +16,20 @@
 
 
         function getUsers() {
+            //get the users using the userService
             userService.getUsers().
                 then(
                 function (data) {
                     console.log('response in controller', data);
-                    $scope.users = data;
-                    //$scope.tableParams = new NgTableParams({}, { dataset: data });
-                    $scope.customConfigParams = createUsingFullOptions(data);
+                    userCtrl.users = data;
+                    //userCtrl.tableParams = new NgTableParams({}, { dataset: data });
+                    userCtrl.customConfigParams = createUsingFullOptions(data);
                 },
-                function (response) { $scope.status = 'unable to load!'; });
+                function (response) { userCtrl.status = 'unable to load!'; });
         }
 
         function createUsingFullOptions(data) {
+            console.log('data in createUsingFullOptions: ',data);
             var initialParams = {
                 count: 6 // initial page size
             };
@@ -38,8 +45,6 @@
         }
     }
 
-    //registering the userController to the module
-    app.controller('userController', ['$scope', 'userService', 'NgTableParams', userController]);
-
+    
 
 })(); //end Self Invoked Function

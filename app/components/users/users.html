@@ -3,10 +3,11 @@
 <h2  class="heading">Users</h2>
 <!--Status {{ status }}-->
 
-<span ng-show="!users">
+
+<span ng-show="!userCtrl.users">
     <img src="../../../assests/img/loading.gif" width="80px" height="80px" />
 </span>
-<table ng-show="users" ng-table="customConfigParams" class="table" show-filter="true">
+<table ng-show="userCtrl.users" ng-table="userCtrl.customConfigParams" class="table" show-filter="true">
     <tr ng-repeat="user in $data">
         <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
             {{user.name}}

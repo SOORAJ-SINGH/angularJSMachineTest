@@ -1,11 +1,17 @@
 (function () {
-    var postController = function ($scope, postFactory, userService, $routeParams, $location, $filter) {
+
+    //registering the postController to the module
+    app.controller('postController', [ 'postFactory', 'userService', '$routeParams', '$location', '$filter', postController]);
+
+    var postController = function ( postFactory, userService, $routeParams, $location, $filter) {
         console.log('in postsController');
         console.log('in postsController routeParams', $routeParams);
 
-        $scope.posts;
-        $scope.postUsers;
-        $scope.status;
+        var postCtrl = this;
+
+        postCtrl.posts;
+        postCtrl.postUsers;
+        postCtrl.status;
 
         getPosts();
         getUsers();
@@ -13,10 +19,10 @@
         //check for the URL parameter
         if (Object.keys($routeParams).length !== 0) {
             console.log('$routeParams are present');
-            $scope.urlUserId = $routeParams.id;
+            postCtrl.urlUserId = $routeParams.id;
         }
 
-        $scope.isActive = function (viewLocation) {
+        postCtrl.isActive = function (viewLocation) {
             console.log('in isActive viewlocation and location path', viewLocation, $location.path());
             var active = (viewLocation === $location.path());
             return active;
@@ -27,28 +33,29 @@
             //get the data from postFactory using API call
             postFactory.getPosts()
                 .then(
-                function (data) { console.log('response in postController', data); $scope.posts = data; },
-                function (response) { $scope.status = 'unable to load!'; });
+                function (data) { console.log('response in postController', data); postCtrl.posts = data; },
+                function (response) { postCtrl.status = 'unable to load!'; });
         }
 
-        //get the users details and assign the user data to the $scope
+        //get the users details and assign the user data to the postCtrl
         function getUsers() {
             //get the data from postFactory using API call
             userService.getUsers()
                 .then(
-                function (data) { console.log('getting users data to be used in postController', data); $scope.postUsers = data; },
-                function (response) { $scope.status = 'unable to load!'; });
+                function (data) {
+                    console.log('getting users data to be used in postController', data); postCtrl.postUsers = data;
+                },
+                function (response) { postCtrl.status = 'unable to load!'; });
         }
 
 
 
 
-        $scope.getUserName = function (userId) {
+        postCtrl.getUserName = function (userId) {
             console.log('getting the usename by userId', userId);
-            //get the user f
-            //console.log('users list',$scope.postUsers);
+            //console.log('users list',postCtrl.postUsers);
             var userName = '';
-            var found = $filter('filter')($scope.postUsers, { id: userId }, true);
+            var found = $filter('filter')(postCtrl.postUsers, { id: userId }, true);
             console.log('found users', found);
             if (found.length) {
                 //found
@@ -70,8 +77,8 @@
         }
 
         //save the post by postFactory 
-        $scope.savePost = function (myForm) {
-            console.log('in SavePost', $scope);
+        postCtrl.savePost = function (myForm) {
+            console.log('in SavePost', postCtrl);
 
             //console.log('myForm',myForm);
             if (myForm) {
@@ -80,7 +87,7 @@
                 if (myForm.$valid) {
                     console.log('form is valid');
 
-                    var postData = angular.copy($scope.post);
+                    var postData = angular.copy(postCtrl.post);
                     //pass is to the post factory to save using the API call 
                     postFactory.savePost(postData)
                         .then(
@@ -113,7 +120,5 @@
         }
     }
 
-    //registering the postController to the module
-    app.controller('postController', ['$scope', 'postFactory', 'userService', '$routeParams', '$location', '$filter', postController]);
-
+    
 })(); //end Self Invoked Function

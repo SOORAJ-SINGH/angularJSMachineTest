@@ -70,12 +70,13 @@
             <div class="row">
                 <div class="col-lg-3">Body</div>
                 <div class="col-lg-5">
-                    <textarea class="form-control" rows="3" placeholder="Post" ng-model="post.body" required></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Post" name="postBody" ng-model="post.body" ng-required="string" required ></textarea>
 
                 </div>
+                {{myForm.postBody.$touched}}{{myForm.postBody.$valid}}
                 <div class="col-lg-4">
-                    <div ng-show="myForm.$submitted || myForm.body.$touched">
-                        <p ng-show="myForm.body.$error.required" class="help-block">Body is required.</p>
+                    <div ng-show="myForm.$submitted || myForm.postBody.$touched">
+                        <p ng-show="myForm.postBody.$error.required" class="help-block">Body is required.</p>
                     </div>
                 </div>
             </div>
@@ -93,29 +94,29 @@
 </div>
 
 
-<span ng-show="!posts">
+<span ng-show="!postCtrl.posts">
     <img src="../../../assests/img/loading.gif" width="80px" height="80px" />
 </span>
-<div ng-show="posts">
+<div ng-show="postCtrl.posts">
     <div class="allPosts">
-        <div class="postDiv" ng-repeat="post in filtered = (posts | filter: {userId:urlUserId}) ">
+        <div class="postDiv" ng-repeat="post in filtered = (postCtrl.posts | filter: {userId:urlUserId}) ">
             <strong>
  UserId
             </strong>
             :
-            <b>{{ getUserName( post.userId) }}</b>
+            <b>{{ getUserName( postCtrl.post.userId) }}</b>
             <br />
 
             <strong>
                 Title
             </strong>
-            : {{ post.title }}
+            : {{ postCtrl.post.title }}
             <br />
 
             <strong>
                 Body
             </strong>
-            : {{ post.body }}
+            : {{ postCtrl.post.body }}
             <br />
             <br />
         </div>

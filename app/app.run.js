@@ -1,6 +1,5 @@
 ﻿(function () {
-   
-
+  
     angular.module("machineTest").run(["ngTableDefaults", configureDefaults]);
 
 

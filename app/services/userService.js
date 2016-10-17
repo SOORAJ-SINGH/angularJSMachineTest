@@ -47,7 +47,7 @@
 
 
     //postFactory to get and post POSTS data using the API calls
-    app.factory('postFactory', ['$http', function ($http) {
+    app.factory('postFactory', ['$http', 'postURL', function ($http, postURL) {
         console.log('in postFactory');
         var post = {};
 
