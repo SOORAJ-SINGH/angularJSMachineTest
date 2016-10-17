@@ -1,7 +1,5 @@
 (function () {
 
-    //registering the postController to the module
-    app.controller('postController', [ 'postFactory', 'userService', '$routeParams', '$location', '$filter', postController]);
 
     var postController = function ( postFactory, userService, $routeParams, $location, $filter) {
         console.log('in postsController');
@@ -120,5 +118,7 @@
         }
     }
 
-    
+      //registering the postController to the module
+    app.controller('postController', [ 'postFactory', 'userService', '$routeParams', '$location', '$filter', postController]);
+  
 })(); //end Self Invoked Function
