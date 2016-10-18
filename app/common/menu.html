@@ -3,14 +3,31 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#users">AngularJS</a>
         </div>
-        <ul class="nav navbar-nav">
+        <ul id="menu" class="nav navbar-nav">
             <li ng-class="{ active: isActive( '/users' ) }">
                 <a href="#users">Users</a>
             </li>
             <li ng-class="{ active: isActive('/posts') }">
             <a href="#posts"> Posts </a></li>
         </ul>
+       
+        <ul ng-show="!globals.currentUser" class="nav navbar-nav navbar-right">
+            <li ng-class="{ active: isActive( '/users' ) }">
+                <a href="#login">Login</a>
+            </li>
+        </ul>        
+        <ul ng-show="globals.currentUser" class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true" >Hello Admin!<b class="caret" style="margin-left:5px;"></b></a>
+            
+            <ul class="dropdown-menu">
+                <li><span ng-click="logout()">Log off</span></li>
+            </ul>
+        </li>
+            
+        </ul>
         
+       
     </div>
 
    

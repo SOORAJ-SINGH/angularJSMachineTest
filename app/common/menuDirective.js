@@ -3,7 +3,7 @@
         return {
             restrict: "E",
             templateUrl: "app/common/menu.html",
-            controller: 'postController'
+            controller: 'loginController'
         };
     });
 })(); //end Self Invoked Function
