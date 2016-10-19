@@ -21,9 +21,14 @@
 
 </head>
 <body>
+
+
     <div class="container">
         <!--<h2>Machine Test</h2>-->
-        <menu></menu>
+        <mt-menu></mt-menu>
+        
+        <mt-modal></mt-modal>
+        
         <div>
             <div ng-view></div>
         </div>
@@ -44,6 +49,7 @@
     <script src="app/components/posts/postController.js"></script>
 
     <script src="app/common/menuDirective.js"></script>
+    <script src="app/common/modalDirective.js"></script>
     <script src="app/services/userService.js"></script>
     <script src="app/services/userAuthenticateService.js"></script>
     <script src="assests/libs/jquery-3.1.1.min.js"></script>

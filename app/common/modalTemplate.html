@@ -1,0 +1,15 @@
+<div class="modal-header">
+            <h3 class="modal-title" id="modal-title">m a modal!</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <ul>
+                <li ng-repeat="item in userCtrl.items">
+                    <a href="#" ng-click="$event.preventDefault(); userCtrl.selected.item = item">{{ item }}</a>
+                </li>
+            </ul>
+            Selected: <b>{{ userCtrl.selected.item }}</b>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="userCtrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="userCtrl.cancel()">Cancel</button>
+        </div>

@@ -1,5 +1,5 @@
 ﻿(function () {
-    app.directive('menu', function () {
+    app.directive('mtMenu', function () {
         return {
             restrict: "E",
             templateUrl: "app/common/menu.html",
