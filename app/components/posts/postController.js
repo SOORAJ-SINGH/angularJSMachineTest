@@ -98,10 +98,11 @@
                 postCtrl.dataSaving = true;
                 if (myForm.$valid) {
                     console.log('form is valid');
+                    
 
                     var postData = angular.copy(postCtrl.post);
                     //pass is to the post factory to save using the API call 
-                    postFactory.savePost(postData)
+                    postFactory.savePost(postCtrl.post)
                         .then(
                         function onSuccess(response) {
                             console.log('in Success savePost', response);

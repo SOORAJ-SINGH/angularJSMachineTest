@@ -45,7 +45,7 @@
                     <!--<select  ng-model="post.UserId" ng-options="user in postUsers" value="{{user.name}}></select>-->
 
 
-                    <select class="form-control" ng-model="post.UserId">
+                    <select class="form-control" ng-model="postCtrl.post.UserId">
                         <option ng-repeat="user in postCtrl.postUsers" value="{{user.Id}}">{{user.name}}</option>
                     </select>
                 </div>
@@ -58,7 +58,7 @@
             <div class="row">
                 <div class="col-lg-3">Title</div>
                 <div class="col-lg-5">
-                    <input class="form-control" type="text" name="title" ng-model="post.Title" placeholder="Title" required />
+                    <input class="form-control" type="text" name="title" ng-model="postCtrl.post.Title" placeholder="Title" required />
 
                 </div>
                 <div class="col-lg-4">
@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-lg-3">Body</div>
                 <div class="col-lg-5">
-                    <textarea class="form-control" type="text" name="postBody" ng-model="post.postBody" placeholder="Post" required > </textarea>
+                    <textarea class="form-control" type="text" name="postBody" ng-model="postCtrl.post.postBody" placeholder="Post" required > </textarea>
 
                 </div>
                 <div class="col-lg-4">
@@ -79,6 +79,7 @@
                     </div>
                 </div>
             </div>
+            
            <!-- <div class="row">
                 <div class="col-lg-3">Body</div>
                 <div class="col-lg-5">
