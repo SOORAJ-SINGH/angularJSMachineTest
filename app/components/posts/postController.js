@@ -10,9 +10,12 @@
         postCtrl.posts;
         postCtrl.postUsers;
         postCtrl.status;
+        postCtrl.dataSaving = false;
 
         getPosts();
         getUsers();
+        
+        
 
         //check for the URL parameter
         if (Object.keys($routeParams).length !== 0) {
@@ -31,7 +34,7 @@
             //get the data from postFactory using API call
             postFactory.getPosts()
                 .then(
-                function (data) { console.log('response in postController', data); postCtrl.posts = data; },
+                function (data) { console.debug('response in postController', data); postCtrl.posts = data; },
                 function (response) { postCtrl.status = 'unable to load!'; });
         }
 
@@ -41,7 +44,8 @@
             userService.getUsers()
                 .then(
                 function (data) {
-                    console.log('getting users data to be used in postController', data); postCtrl.postUsers = data;
+                    console.log('getting users data to be used in postController', data);
+                    postCtrl.postUsers = data;return data;
                 },
                 function (response) { postCtrl.status = 'unable to load!'; });
         }
@@ -49,39 +53,49 @@
 
 
 
-        postCtrl.getUserName = function (userId) {
-            console.log('getting the usename by userId', userId);
-            //console.log('users list',postCtrl.postUsers);
+        postCtrl.getUserName = function (userId) { 
             var userName = '';
-            var found = $filter('filter')(postCtrl.postUsers, { id: userId }, true);
-            console.log('found users', found);
-            if (found.length) {
-                //found
-                userName = found[0].name;
+
+            //this need to be done based on the getUsers data....
+            if (postCtrl.postUsers) {
+
+                //console.log('getting the usename by userId', userId);
+                //console.log('users list',postCtrl.postUsers);
+                
+                //get the postUsers...........
+                var found = $filter('filter')( postCtrl.postUsers, { id: userId }, true);
+                
+                if ( found !== undefined  ) { 
+                //console.log('found users', found);
+                       if (found.length) {
+                               //found
+                                userName = found[0].name;
+                        }         
+                }
+                else{
+                console.error('not found users', found);
+                }
+            }else{
+                console.error('postUsers is empty!');
+                //getUsers();
             }
-            //else {
-            //    //not found
-            //}
-
-
             if (userName) {
                 return userName;
             }
             else {
                 return 'dummy';
-
             }
 
-        }
+        }; //end getUserName
 
         //save the post by postFactory 
         postCtrl.savePost = function (myForm) {
             console.log('in SavePost', postCtrl);
-
+            
             //console.log('myForm',myForm);
             if (myForm) {
                 console.log('myForm', myForm.$valid);
-
+                postCtrl.dataSaving = true;
                 if (myForm.$valid) {
                     console.log('form is valid');
 
@@ -100,16 +114,19 @@
                             else {
                                 window.toastr.error('Some error occurred!');
                             }
+                            postCtrl.dataSaving = false;
                         },
                         function onError(response) {
                             console.log('in Error', response);
                             window.toastr.error('Some error occurred!');
+                            postCtrl.dataSaving = false;
 
                         });
                 }
                 else {
                     console.log('Form not valid');
                     window.toastr.info('Form not Valid!');
+                    postCtrl.dataSaving = false;
                 }
             }
             else {

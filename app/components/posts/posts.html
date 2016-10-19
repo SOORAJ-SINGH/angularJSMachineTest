@@ -31,7 +31,7 @@
 </style>
 <h2 class="heading">Posts</h2>
 
-<link href="../../../assests/css/toastr.css" rel="stylesheet" />
+
 <link href="../../../assests/css/toastr.css" rel="stylesheet" />
 <script src="../../../assests/libs/toastr.js"></script>
 <div class="createForm">
@@ -46,7 +46,7 @@
 
 
                     <select class="form-control" ng-model="post.UserId">
-                        <option ng-repeat="user in postUsers" value="{{user.Id}}">{{user.name}}</option>
+                        <option ng-repeat="user in postCtrl.postUsers" value="{{user.Id}}">{{user.name}}</option>
                     </select>
                 </div>
                 <div class="col-lg-4">
@@ -66,24 +66,37 @@
                         <p ng-show="myForm.title.$error.required" class="help-block">Title is required.</p>
                     </div>
                 </div>
-            </div>
+            </div>    
             <div class="row">
                 <div class="col-lg-3">Body</div>
                 <div class="col-lg-5">
-                    <textarea class="form-control" rows="3" placeholder="Post" name="postBody" ng-model="post.body" ng-required="string" required ></textarea>
+                    <textarea class="form-control" type="text" name="postBody" ng-model="post.postBody" placeholder="Post" required > </textarea>
 
                 </div>
-                {{myForm.postBody.$touched}}{{myForm.postBody.$valid}}
                 <div class="col-lg-4">
                     <div ng-show="myForm.$submitted || myForm.postBody.$touched">
                         <p ng-show="myForm.postBody.$error.required" class="help-block">Body is required.</p>
                     </div>
                 </div>
             </div>
+           <!-- <div class="row">
+                <div class="col-lg-3">Body</div>
+                <div class="col-lg-5">
+                    <input class="form-control" type="text" placeholder="Post" name="postBody1" ng-model="post.body1" ng-required="string" required ></input>
+
+                </div>
+                {{myForm.postBody.$touched}}{{myForm.postBody.$valid}}
+                <div class="col-lg-4">
+                    <div ng-show="myForm.$submitted || myForm.postBody1.$touched">
+                        <p ng-show="myForm.postBody1.$error.required" class="help-block">Body is required.</p>
+                    </div>
+                </div>
+            </div>  -->
+
             <div class="row">
                 <div class="col-lg-3"></div>
-                <div class="col-lg-3">
-                    <button class="btn btn-primary" type="submit" ng-click="savePost(myForm)"> Save Post</button>
+                <div class="col-lg-6">
+                    <button class="btn btn-primary" type="submit" ng-click="postCtrl.savePost(myForm)"> Save Post</button><img ng-if="postCtrl.dataSaving" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
                 </div>
             </div>
         </form>
@@ -97,14 +110,16 @@
 <span ng-show="!postCtrl.posts">
     <img src="../../../assests/img/loading.gif" width="80px" height="80px" />
 </span>
+
 <div ng-show="postCtrl.posts">
+
     <div class="allPosts">
         <div class="postDiv" ng-repeat="post in filtered = (postCtrl.posts | filter: {userId:urlUserId}) ">
             <strong>
  UserId
             </strong>
             :
-            <b>{{ postCtrl.getUserName( post.userId) }}</b>
+            <b>{{ postCtrl.postUsers == undefined ? console.log("users not present") : postCtrl.getUserName( 1) }}</b>
             <br />
 
             <strong>

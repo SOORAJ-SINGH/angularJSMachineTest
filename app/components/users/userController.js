@@ -18,7 +18,7 @@
             userService.getUsers().
                 then(
                 function (data) {
-                    console.log('response in controller', data);
+                    console.debug('response in user controller', data);
                     userCtrl.users = data;
                     //userCtrl.tableParams = new NgTableParams({}, { dataset: data });
                     userCtrl.customConfigParams = createUsingFullOptions(data);
@@ -27,7 +27,7 @@
         }
 
         function createUsingFullOptions(data) {
-            console.log('data in createUsingFullOptions: ',data);
+            //console.log('data in createUsingFullOptions: ',data);
             var initialParams = {
                 count: 6 // initial page size
             };
