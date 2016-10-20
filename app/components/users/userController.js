@@ -1,6 +1,9 @@
 (function () {
 
-    var userController = function ( userService, NgTableParams) {
+    //registering the userController to the module
+    app.controller('userController', [ 'userService', 'NgTableParams', userController]);
+
+     function userController( userService, NgTableParams) {
         console.log('in userController');
         var userCtrl = this;
 
@@ -44,7 +47,5 @@
     }
 
     
-    //registering the userController to the module
-    app.controller('userController', [ 'userService', 'NgTableParams', userController]);
-
+    
 })(); //end Self Invoked Function

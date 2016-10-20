@@ -4,6 +4,7 @@
     <link href="assests/css/bootstrap.css" rel="stylesheet" />
     <link href="assests/css/ng-table.min.css" rel="stylesheet" />
 
+  
     <style>
         h2.heading {
             background-color: beige;
@@ -27,8 +28,27 @@
         <!--<h2>Machine Test</h2>-->
         <mt-menu></mt-menu>
         
-        <mt-modal></mt-modal>
         
+        <div ng-controller="modalController as modalCtrl" class="modal-demo">
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Im a modal!</h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <ul>
+                    <li ng-repeat="item in modalCtrl.items">
+                        <a href="#" ng-click="$event.preventDefault(); modalCtrl.selected.item = item">{{ item }}</a>
+                    </li>
+                </ul>
+                Selected: <b>{{ modalCtrl.selected.item }}</b>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="modalCtrl.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+            </div>
+    </script>
+            <button type="button" class="btn btn-default" ng-click="modalCtrl.open()">Open me!</button>
+        </div>
         <div>
             <div ng-view></div>
         </div>
@@ -38,6 +58,11 @@
     <script src="assests/libs/angular1.50/angular.js"></script>
     <script src="assests/libs/angular-route.js"></script>
     <script src="assests/libs/angular-cookies.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.2.0.js"></script>
+    
     <script src="assests/libs/ui-bootstrap-tpls-2.1.4.min.js"></script>
     <script src="app/app.js"></script>
 
@@ -47,6 +72,7 @@
     <script src="app/components/login/loginController.js"></script>
     <script src="app/components/users/userController.js"></script>
     <script src="app/components/posts/postController.js"></script>
+    <script src="app/common/modalController.js"></script>
 
     <script src="app/common/menuDirective.js"></script>
     <script src="app/common/modalDirective.js"></script>
