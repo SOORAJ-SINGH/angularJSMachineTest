@@ -1,17 +1,25 @@
 (function () {
 
-    var userController = function ( userService, NgTableParams) {
+
+ //registering the userController to the module
+    app.controller('userController', [ 'userService', 'NgTableParams', userController]);
+
+
+    function  userController( userService, NgTableParams) {
         console.log('in userController');
         var userCtrl = this;
 
         userCtrl.hello = "hello all";
         userCtrl.users;
         userCtrl.status;
-
+        //userCtrl.filter;
         getUsers();
+        userCtrl.showUserDetails = showUserDetails;
 
-
-
+        function showUserDetails(name ){
+             console.log('name',name);
+             userCtrl.showUserDetail= name;
+        }
 
         function getUsers() {
             //get the users using the userService
@@ -23,7 +31,7 @@
                     //userCtrl.tableParams = new NgTableParams({}, { dataset: data });
                     userCtrl.customConfigParams = createUsingFullOptions(data);
                 },
-                function (response) { userCtrl.status = 'unable to load!'; });
+                function (error) { userCtrl.status = 'unable to load!'; });
         }
 
         function createUsingFullOptions(data) {
@@ -44,7 +52,6 @@
     }
 
     
-    //registering the userController to the module
-    app.controller('userController', [ 'userService', 'NgTableParams', userController]);
+   
 
 })(); //end Self Invoked Function
