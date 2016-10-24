@@ -8,14 +8,6 @@ app.controller('loginController',['$rootScope','$location','userAuthenticateServ
 	//clear the Credentials
 	//userAuthenticateService.clearCredentials();
 
-	//add the watch on globals.currentUser
-	$rootScope.$watch('globals', function (newValue, oldValue, scope) {
-		console.log('newValue:',newValue);
-   		 		console.log('oldValue:',oldValue);	if (newValue !== oldValue) {
-			    
-		};
-
-	});
 
 	loginCtrl.login = function(){
 	console.log('in login controller function');
@@ -30,7 +22,7 @@ app.controller('loginController',['$rootScope','$location','userAuthenticateServ
 				$location.path('/');
 			}
 			else{
-				loginCtrl.error = response.error;
+				loginCtrl.error = response.message;
 				loginCtrl.dataLoading = false;
 			};
 		});

@@ -5,6 +5,7 @@
 
     function configureDefaults(ngTableDefaults,$rootScope, $location, $cookies, $http) {
         console.log('in app.run for configureDefaults ');
+
         ngTableDefaults.params.count = 5;
         ngTableDefaults.settings.counts = [];
 
@@ -26,7 +27,7 @@
  		
         //rootscope listen to the locationChange event..
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        	console.log('in the locationChangeStart',event, next, current);
+            console.log('in the locationChangeStart',event, next, current);
             // redirect to login page if not logged in and trying to access a restricted page
             //debugger
             var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
@@ -35,10 +36,13 @@
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');
             }
-            /*else
-            {
-               // $location.path('/');
-            }*/
+            
+        });
+
+
+        //rootscope listen to the RouteChangeError event..
+        $rootScope.$on('$routeChangeError', function (current,previous, rejection) {
+            console.error('in the routeChangeError',current,previous, rejection);
         });
     }
 

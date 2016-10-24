@@ -36,7 +36,7 @@
 			//console.log();
 				//set the expiry to 10 minutes
 			var expiresDate = new Date();
-			expiresDate.setMinutes(expiresDate.getMinutes() + 10);
+			expiresDate.setMinutes(expiresDate.getMinutes() + 30);
 			console.log('expiresDate',expiresDate);
 			$cookies.put('globals',JSON.stringify($rootScope.globals),{
             expires: expiresDate
