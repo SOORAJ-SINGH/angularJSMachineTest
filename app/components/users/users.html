@@ -1,38 +1,37 @@
 
 
-<h2  class="heading">Users</h2>
+<h2 class="heading">Users</h2>
 <!--Status {{ status }}-->
- <!-- Trigger the modal with a button -->
-        <!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  -->
+<!-- Trigger the modal with a button -->
+<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>  -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><b> {{ userCtrl.showUserDetail.name }} </b></h4>
-              </div>
-              <div class="modal-body">
-                <div>
-<table class="table table-sm">
-<tr><td>Address</td><td> <b>{{ userCtrl.showUserDetail.address.suite }} {{userCtrl.showUserDetail.address.street }}{{userCtrl.showUserDetail.address.city }} &nbsp {{ userCtrl.showUserDetail.address.zipcode }}</b> </td></tr>
-<tr><td>Company</td><td><b>{{ userCtrl.showUserDetail.company.name }}</b></td></tr>
-<tr><td>Email</td><td><b>{{ userCtrl.showUserDetail.email }}</b></td></tr>
-<tr><td>Phone</td><td><b>{{ userCtrl.showUserDetail.phone }}</b></td></tr>
-<tr><td>Website</td><td><a href="http://www.{{ user.website }}">{{ userCtrl.showUserDetail.website }}</a></td></tr>
-</table>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
             </div>
-
-          </div>
+            <div class="modal-body">
+                <div>
+                    <table class="table table-sm">
+                        <tr><td>Address</td><td> <b>{{ userCtrl.showUserDetail.address.suite }} {{userCtrl.showUserDetail.address.street }}{{userCtrl.showUserDetail.address.city }} &nbsp {{ userCtrl.showUserDetail.address.zipcode }}</b> </td></tr>
+                        <tr><td>Company</td><td><b>{{ userCtrl.showUserDetail.company.name }}</b></td></tr>
+                        <tr><td>Email</td><td><b>{{ userCtrl.showUserDetail.email }}</b></td></tr>
+                        <tr><td>Phone</td><td><b>{{ userCtrl.showUserDetail.phone }}</b></td></tr>
+                        <tr><td>Website</td><td><a href="http://www.{{ userCtrl.showUserDetail.website }}">{{ userCtrl.showUserDetail.website }}</a></td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
+
+    </div>
+</div>
 
 <span ng-show="!userCtrl.users">
     <img src="../../../assests/img/loading.gif" width="80px" height="80px" />
@@ -42,47 +41,28 @@
         <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
             {{user.name}}
         </td>
-        <td title="'City'"  sortable="'address.city'">
+        <td title="'City'" sortable="'address.city'">
             {{user.address.city}}
         </td>
-        <td title="'Company'"  sortable="'company.name'">
+        <td title="'Company'" sortable="'company.name'">
             {{user.company.name }}
         </td>
-        
+
         <td title="'Email'" sortable="'email'">
             {{user.email}} <br /> <a href="http://www.{{ user.website }}">{{ user.website }}</a>
         </td>
 
-        <td title="'Action'" >
+        <td title="'Action'">
             <a href="javascript:void(0);" ng-click="userCtrl.showUserDetails(user)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Details</a>
-            <a href="#posts?id={{ user.id}}" class="btn btn-info btn-sm" >View Posts</a>
+            <a href="#posts?id={{ user.id}}" class="btn btn-info btn-sm">View Posts</a>
         </td>
     </tr>
 </table>
 
 <script type="text/ng-template" id="myModalContent.html">
-        
-    </script>
 
-<!--<div>
-    <div class="row">
-        <div class="col-md-2"><strong>User Name</strong></div>
-        <div class="col-md-2"><strong> City </strong></div>
-        <div class="col-md-2"><strong> Company</strong></div>
-        <div class="col-md-1"><strong> Phone </strong></div>
-        <div class="col-md-2"><strong> Email </strong></div>
-        <div class="col-md-1"><strong> Action</strong></div>
-    </div>
-    <div class="row " width="100%" ng-repeat="user in users">
+</script>
 
-        <div class="col-md-2">{{ user.name }}</div>
-        <div class="col-md-2">{{ user.address.city }}</div>
-        <div class="col-md-2">{{ user.company.name }}</div>
-        <div class="col-md-1">{{ user.phone }}</div>
-        <div class="col-md-2">{{ user.email }} <a href="http://www.{{ user.website }}">{{ user.website }}</a></div>
-        <div class="col-md-1"><a href="#posts?id={{ user.id}}">View Posts</a></div>
-    </div>
-    
-</div>-->
+
 
 

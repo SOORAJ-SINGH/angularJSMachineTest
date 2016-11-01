@@ -6,8 +6,8 @@
     function configureDefaults(ngTableDefaults,$rootScope, $location, $cookies, $http) {
         console.log('in app.run for configureDefaults ');
 
-        ngTableDefaults.params.count = 5;
-        ngTableDefaults.settings.counts = [];
+        //ngTableDefaults.params.count = 5;
+        //ngTableDefaults.settings.counts = [];
 
 
         // keep user logged in after page refresh
